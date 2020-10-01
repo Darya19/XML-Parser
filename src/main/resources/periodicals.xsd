@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="https://www.standart-namespace.com/paper"
+        xmlns:p="https://www.standart-namespace.com/paper"
+        elementFormDefault="qualified">
+    >
+    <complexType name="Paper">
+        <sequence>
+            <element name="monthly" type="boolean"/>
+            <element name="publication-date" type="date"/>
+            <element name="characteristics" type="p:Characteristics"/>
+        </sequence>
+        <attribute name="title" type="string" use="required"/>
+        <attribute name="type" type="string" default="newspaper">
+            <simpleType>
+                <restriction base="string">
+                    <enumeration value="newspaper"/>
+                    <enumeration value="booklet"/>
+                    <enumeration value="magazine"/>
+                </restriction>
+            </simpleType>
+        </attribute>
+    </complexType>
+    <complexType name="Characteristics">
+        <sequence>
+            <element name="page-number" type="positiveInteger"/>
+            <element name="glossy" type="boolean"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="Newspaper">
+        <complexContent>
+            <extension base="p:Paper">
+                <sequence>
+                    <element name="index" type="p:Index"/>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="Magazine">
+        <complexContent>
+            <extension base="p:Paper">
+                <sequence>
+                    <element name="index" type="p:Index"/>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+    <simpleType name="Index">
+        <restriction base="positiveInteger">
+            <pattern value="[0-9]{3}[/][0-9]{2}"/>
+        </restriction>
+    </simpleType>
+
+    <complexType name="Booklet">
+        <complexContent>
+            <extension base="p:Paper">
+                <sequence>
+                    <element name="booklet-type" type="p:Booklet-type"/>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+        <simpleType name="Booklet-type">
+            <restriction base="string">
+                <enumeration value="gluing"/>
+                <enumeration value="fold"/>
+            </restriction>
+        </simpleType>
+
+    <element name="Paper" type="p:Paper" abstract="true"/>
+    <element name="Newspaper" type="p:Newspaper" substitutionGroup="p:Paper"/>
+    <element name="Magazine" type="p:Magazine" substitutionGroup="p:Paper"/>
+    <element name="Booklet" type="p:Booklet" substitutionGroup="p:Paper"/>
+
+    <element name="Periodicals">
+        <complexType>
+            <sequence>
+                <element ref="p:Paper" maxOccurs="unbounded" minOccurs="1"/>
+            </sequence>
+        </complexType>
+    </element>
+</schema>
+
