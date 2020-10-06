@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<paper xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:p="https://www.standart-namespace.com/paper"
+        xsi:schemaLocation="https://www.standart-namespace.com/paper periodicals.xsd">
+    <newspaper title="Science development" type="newspaper">
+        <monthly>true</monthly>
+        <publication_date>12.3.1998</publication_date>
+        <characteristics>
+            <page_number>16</page_number>
+            <glossy>false</glossy>
+        </characteristics>
+        <index>ghy/64</index>
+    </newspaper>
+    <magazine title="Vog" type="magazine">
+        <monthly>true</monthly>
+        <publication_date>09.11.2003</publication_date>
+        <characteristics>
+            <page_number>48</page_number>
+            <glossy>true</glossy>
+        </characteristics>
+        <index>hjj/78</index>
+    </magazine>
+    <magazine title="Beauty" type="magazine">
+        <monthly>true</monthly>
+        <publication_date>04.7.1991</publication_date>
+        <characteristics>
+            <page_number>38</page_number>
+            <glossy>true</glossy>
+        </characteristics>
+        <index>hjk/98</index>
+    </magazine>
+    <booklet title="Java development" type="booklet">
+        <monthly>false</monthly>
+        <publication_date>14.9.2016</publication_date>
+        <characteristics>
+            <page_number>4</page_number>
+            <glossy>true</glossy>
+        </characteristics>
+        <booklet_type>gluing</booklet_type>
+    </booklet>
+    <booklet title="Windows" type="booklet">
+        <monthly>false</monthly>
+        <publication_date>23.1.2019</publication_date>
+        <characteristics>
+            <page_number>2</page_number>
+            <glossy>true</glossy>
+        </characteristics>
+        <booklet_type>fold</booklet_type>
+    </booklet>
+</paper>

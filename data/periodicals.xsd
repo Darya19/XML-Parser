@@ -3,11 +3,10 @@
         targetNamespace="https://www.standart-namespace.com/paper"
         xmlns:p="https://www.standart-namespace.com/paper"
         elementFormDefault="qualified">
-    >
     <complexType name="Paper">
         <sequence>
             <element name="monthly" type="boolean"/>
-            <element name="publication-date" type="date"/>
+            <element name="publication_date" type="date"/>
             <element name="characteristics" type="p:Characteristics"/>
         </sequence>
         <attribute name="title" type="string" use="required"/>
@@ -23,11 +22,16 @@
     </complexType>
     <complexType name="Characteristics">
         <sequence>
-            <element name="page-number" type="positiveInteger"/>
+            <element name="page_number" type="positiveInteger"/>
             <element name="glossy" type="boolean"/>
         </sequence>
     </complexType>
-
+    <simpleType name="page_number">
+        <restriction base="string">
+            <minExclusive value="1"/>
+            <maxExclusive value="1000"/>
+        </restriction>
+    </simpleType>
     <complexType name="Newspaper">
         <complexContent>
             <extension base="p:Paper">
@@ -48,8 +52,8 @@
         </complexContent>
     </complexType>
     <simpleType name="Index">
-        <restriction base="positiveInteger">
-            <pattern value="[0-9]{3}[/][0-9]{2}"/>
+        <restriction base="ID">
+            <pattern value="[\\w]{3}[/][0-9]{2}"/>
         </restriction>
     </simpleType>
 
@@ -57,17 +61,17 @@
         <complexContent>
             <extension base="p:Paper">
                 <sequence>
-                    <element name="booklet-type" type="p:Booklet-type"/>
+                    <element name="booklet_type" type="p:Booklet_type"/>
                 </sequence>
             </extension>
         </complexContent>
     </complexType>
-        <simpleType name="Booklet-type">
-            <restriction base="string">
-                <enumeration value="gluing"/>
-                <enumeration value="fold"/>
-            </restriction>
-        </simpleType>
+    <simpleType name="Booklet_type">
+        <restriction base="string">
+            <enumeration value="gluing"/>
+            <enumeration value="fold"/>
+        </restriction>
+    </simpleType>
 
     <element name="Paper" type="p:Paper" abstract="true"/>
     <element name="Newspaper" type="p:Newspaper" substitutionGroup="p:Paper"/>
@@ -77,7 +81,7 @@
     <element name="Periodicals">
         <complexType>
             <sequence>
-                <element ref="p:Paper" maxOccurs="unbounded" minOccurs="1"/>
+                <element ref="p:Paper" maxOccurs="unbounded"/>
             </sequence>
         </complexType>
     </element>
