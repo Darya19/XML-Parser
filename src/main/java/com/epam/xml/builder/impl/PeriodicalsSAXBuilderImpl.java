@@ -1,8 +1,11 @@
-package com.epam.xml.util.impl;
+package com.epam.xml.builder.impl;
 
+import com.epam.xml.builder.AbstractPeriodicalsBuilder;
+import com.epam.xml.builder.PeriodicalsHandler;
 import com.epam.xml.entity.Paper;
-import com.epam.xml.util.AbstractPeriodicalsBuilder;
-import com.epam.xml.util.PeriodicalsHandler;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.XMLReaderFactory;
@@ -10,22 +13,23 @@ import org.xml.sax.helpers.XMLReaderFactory;
 import java.io.IOException;
 import java.util.Set;
 
-public class PeriodicalsSAXBuilder extends AbstractPeriodicalsBuilder {
+public class PeriodicalsSAXBuilderImpl extends AbstractPeriodicalsBuilder {
 
     private PeriodicalsHandler periodicalsHandler;
     private XMLReader reader;
+    private Logger logger = LogManager.getLogger();
 
-    public PeriodicalsSAXBuilder() {
+    public PeriodicalsSAXBuilderImpl() {
         periodicalsHandler = new PeriodicalsHandler();
         try {
             reader = XMLReaderFactory.createXMLReader();
             reader.setContentHandler(periodicalsHandler);
         } catch (SAXException e) {
-            System.err.print("ошибка SAX парсера: " + e);
+            logger.log(Level.ERROR, "error SAX parser", e);
         }
     }
 
-    public PeriodicalsSAXBuilder(Set<Paper> periodicals) {
+    public PeriodicalsSAXBuilderImpl(Set<Paper> periodicals) {
         super(periodicals);
     }
 
@@ -34,9 +38,9 @@ public class PeriodicalsSAXBuilder extends AbstractPeriodicalsBuilder {
         try {
             reader.parse(fileName);
         } catch (SAXException e) {
-            System.err.print("ошибка SAX парсера: " + e);
+            logger.log(Level.ERROR, "SAX parser error", e);
         } catch (IOException e) {
-            System.err.print("ошибка I/О потока: " + e);
+            logger.log(Level.ERROR, "File error or I/O error: ", e);
         }
         periodicals = periodicalsHandler.getPeriodicals();
     }

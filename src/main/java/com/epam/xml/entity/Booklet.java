@@ -34,10 +34,10 @@ public class Booklet extends Paper {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Booklet{");
+        final StringBuilder sb = new StringBuilder("Booklet").append("\n");
         sb.append(super.toString());
-        sb.append("bookletType='").append(bookletType).append("\'");
-        sb.append("}\n");
+        sb.append("bookletType: ").append(bookletType);
+        sb.append("\n");
         return sb.toString();
     }
 }

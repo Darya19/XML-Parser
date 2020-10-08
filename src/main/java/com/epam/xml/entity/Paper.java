@@ -5,10 +5,10 @@ import java.time.LocalDate;
 public abstract class Paper {
 
     protected String title;
-    protected String type;
+    protected PaperType type;
     protected boolean monthly;
     protected LocalDate publicationDate;
-    protected Characteristics characteristics = new Characteristics();
+    protected Characteristics characteristics;
 
     public String getTitle() {
         return title;
@@ -18,15 +18,15 @@ public abstract class Paper {
         this.title = title;
     }
 
-    public String getType() {
+    public PaperType getType() {
         if (type == null) {
-            return "newspaper";
+            return PaperType.PAPER;
         } else {
             return type;
         }
     }
 
-    public void setType(String type) {
+    public void setType(PaperType type) {
         this.type = type;
     }
 
@@ -50,14 +50,21 @@ public abstract class Paper {
         return characteristics;
     }
 
+    public Characteristics setCharacteristics() {
+        if (characteristics == null) {
+            this.characteristics = new Characteristics();
+        }
+        return characteristics;
+    }
+
     public void setCharacteristics(Characteristics characteristics) {
         this.characteristics = characteristics;
     }
 
     public class Characteristics {
 
-        protected int pageNumber;
-        protected boolean glossy;
+        private int pageNumber;
+        private boolean glossy;
 
         public int getPageNumber() {
             return pageNumber;
@@ -77,10 +84,9 @@ public abstract class Paper {
 
         @Override
         public String toString() {
-            final StringBuilder sb = new StringBuilder("{");
-            sb.append("pageNumber=").append(pageNumber);
-            sb.append(",\n glossy=").append(glossy);
-            sb.append("}");
+            final StringBuilder sb = new StringBuilder();
+            sb.append("pageNumber: ").append(pageNumber).append("\n");
+            sb.append("glossy: ").append(glossy).append("\n");
             return sb.toString();
         }
 
@@ -93,8 +99,6 @@ public abstract class Paper {
 
             if (getPageNumber() != that.getPageNumber()) return false;
             return isGlossy() == that.isGlossy();
-
-
         }
 
         @Override
@@ -137,12 +141,11 @@ public abstract class Paper {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();
-        sb.append("title='").append(title).append("\',\n");
-        sb.append("type='").append(type).append("\',\n");
-        sb.append("monthly=").append(monthly).append(",\n");
-        sb.append("publicationDate=").append(publicationDate).append(",\n");
-        sb.append("characteristics=").append(characteristics);
-        sb.append("\n");
+        sb.append("title: ").append(title).append("\n");
+        sb.append("type: ").append(type).append("\n");
+        sb.append("monthly: ").append(monthly).append("\n");
+        sb.append("publicationDate: ").append(publicationDate).append("\n");
+        sb.append("characteristics \n").append(characteristics);
         return sb.toString();
     }
 }

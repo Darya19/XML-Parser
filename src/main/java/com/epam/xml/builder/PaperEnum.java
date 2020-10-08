@@ -1,8 +1,11 @@
-package com.epam.xml.util;
+package com.epam.xml.builder;
 
 public enum PaperEnum {
 
     PAPER("paper"),
+    NEWSPAPER("newspaper"),
+    MAGAZINE("magazine"),
+    BOOKLET("booklet"),
     TITLE("title"),
     TYPE("type"),
     MONTHLY("monthly"),

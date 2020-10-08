@@ -1,11 +1,10 @@
-package com.epam.xml.util;
+package com.epam.xml.builder;
 
-import com.epam.xml.entity.Booklet;
-import com.epam.xml.entity.Magazine;
-import com.epam.xml.entity.Newspaper;
-import com.epam.xml.entity.Paper;
+import com.epam.xml.entity.*;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.xml.sax.Attributes;
-import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 import java.time.LocalDate;
@@ -19,6 +18,7 @@ public class PeriodicalsHandler extends DefaultHandler {
     private Paper current = null;
     private PaperEnum currentEnum = null;
     private EnumSet<PaperEnum> withText;
+    private Logger logger = LogManager.getLogger();
 
     public PeriodicalsHandler() {
         periodicals = new HashSet<>();
@@ -29,29 +29,28 @@ public class PeriodicalsHandler extends DefaultHandler {
         return periodicals;
     }
 
-//    @Override
-//    public void startDocument() {
-//        if("paper".equals(this.)){
-//        System.out.println("Parsing started");
-//    }}
-
     @Override
-    public void startElement(String uri, String localName, String qName, Attributes attributes)
-            throws SAXException {
+    public void startElement(String uri, String localName, String qName, Attributes attributes) {
         if ("newspaper".equals(localName)) {
             current = new Newspaper();
+            logger.log(Level.INFO, "object newspaper create");
             current.setTitle(attributes.getValue(0));
-            current.setType(attributes.getValue(1));
+            String type = attributes.getValue(1);
+            current.setType(PaperType.valueOf(type.toUpperCase()));
         } else {
             if ("magazine".equals(localName)) {
                 current = new Magazine();
+                logger.log(Level.INFO, "object magazine create");
                 current.setTitle(attributes.getValue(0));
-                current.setType(attributes.getValue(1));
+                String type = attributes.getValue(1);
+                current.setType(PaperType.valueOf(type.toUpperCase()));
             } else {
                 if ("booklet".equals(localName)) {
                     current = new Booklet();
+                    logger.log(Level.INFO, "object booklet create");
                     current.setTitle(attributes.getValue(0));
-                    current.setType(attributes.getValue(1));
+                    String type = attributes.getValue(1);
+                    current.setType(PaperType.valueOf(type.toUpperCase()));
                 } else {
                     PaperEnum temp = PaperEnum.valueOf(localName.toUpperCase());
                     if (withText.contains(temp)) {
@@ -70,6 +69,7 @@ public class PeriodicalsHandler extends DefaultHandler {
                 case PAPER:
                     break;
                 case CHARACTERISTICS:
+                    current.setCharacteristics();
                     break;
                 case MONTHLY:
                     if (s.equals("true")) {

@@ -3,14 +3,14 @@
         targetNamespace="https://www.standart-namespace.com/paper"
         xmlns:p="https://www.standart-namespace.com/paper"
         elementFormDefault="qualified">
-    <complexType name="Paper">
+    <complexType name="paper">
         <sequence>
             <element name="monthly" type="boolean"/>
             <element name="publication_date" type="date"/>
-            <element name="characteristics" type="p:Characteristics"/>
+            <element name="characteristics" type="p:characteristics"/>
         </sequence>
         <attribute name="title" type="string" use="required"/>
-        <attribute name="type" type="string" default="newspaper">
+        <attribute name="type" type="string" default="paper">
             <simpleType>
                 <restriction base="string">
                     <enumeration value="newspaper"/>
@@ -20,7 +20,7 @@
             </simpleType>
         </attribute>
     </complexType>
-    <complexType name="Characteristics">
+    <complexType name="characteristics">
         <sequence>
             <element name="page_number" type="positiveInteger"/>
             <element name="glossy" type="boolean"/>
@@ -32,56 +32,50 @@
             <maxExclusive value="1000"/>
         </restriction>
     </simpleType>
-    <complexType name="Newspaper">
+    <complexType name="newspaper">
         <complexContent>
-            <extension base="p:Paper">
+            <extension base="p:paper">
                 <sequence>
-                    <element name="index" type="p:Index"/>
+                    <element name="index" type="p:index"/>
                 </sequence>
             </extension>
         </complexContent>
     </complexType>
 
-    <complexType name="Magazine">
+    <complexType name="magazine">
         <complexContent>
-            <extension base="p:Paper">
+            <extension base="p:paper">
                 <sequence>
-                    <element name="index" type="p:Index"/>
+                    <element name="index" type="p:index"/>
                 </sequence>
             </extension>
         </complexContent>
     </complexType>
-    <simpleType name="Index">
+    <simpleType name="index">
         <restriction base="ID">
             <pattern value="[\\w]{3}[/][0-9]{2}"/>
         </restriction>
     </simpleType>
 
-    <complexType name="Booklet">
+    <complexType name="booklet">
         <complexContent>
-            <extension base="p:Paper">
+            <extension base="p:paper">
                 <sequence>
-                    <element name="booklet_type" type="p:Booklet_type"/>
+                    <element name="booklet_type" type="string"/>
                 </sequence>
             </extension>
         </complexContent>
     </complexType>
-    <simpleType name="Booklet_type">
-        <restriction base="string">
-            <enumeration value="gluing"/>
-            <enumeration value="fold"/>
-        </restriction>
-    </simpleType>
 
-    <element name="Paper" type="p:Paper" abstract="true"/>
-    <element name="Newspaper" type="p:Newspaper" substitutionGroup="p:Paper"/>
-    <element name="Magazine" type="p:Magazine" substitutionGroup="p:Paper"/>
-    <element name="Booklet" type="p:Booklet" substitutionGroup="p:Paper"/>
+    <element name="paper" type="p:paper" abstract="true"/>
+    <element name="Newspaper" type="p:newspaper" substitutionGroup="p:paper"/>
+    <element name="Magazine" type="p:magazine" substitutionGroup="p:paper"/>
+    <element name="Booklet" type="p:booklet" substitutionGroup="p:paper"/>
 
-    <element name="Periodicals">
+    <element name="periodicals">
         <complexType>
             <sequence>
-                <element ref="p:Paper" maxOccurs="unbounded"/>
+                <element ref="p:paper" maxOccurs="unbounded"/>
             </sequence>
         </complexType>
     </element>

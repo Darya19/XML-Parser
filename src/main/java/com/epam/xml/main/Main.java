@@ -1,13 +1,13 @@
 package com.epam.xml.main;
 
-import com.epam.xml.util.AbstractPeriodicalsBuilder;
-import com.epam.xml.util.impl.PeriodicalsSAXBuilder;
+import com.epam.xml.builder.AbstractPeriodicalsBuilder;
+import com.epam.xml.parserfactory.PeriodicalsBuilderFactory;
 
 public class Main {
     public static void main(String[] args) {
-        AbstractPeriodicalsBuilder saxBuilder = new PeriodicalsSAXBuilder();
-        saxBuilder.buildSetPeriodicals("data/periodicals.xml");
-        System.out.println(saxBuilder.getPeriodicals());
-
+        PeriodicalsBuilderFactory factory = new PeriodicalsBuilderFactory();
+        AbstractPeriodicalsBuilder builder = factory.createPeriodicalsBuilder("dom");
+        builder.buildSetPeriodicals("data/periodicals.xml");
+        System.out.println(builder.getPeriodicals());
     }
 }

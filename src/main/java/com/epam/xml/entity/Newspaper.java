@@ -34,9 +34,9 @@ public class Newspaper extends Paper {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Newspaper{");
+        final StringBuilder sb = new StringBuilder("Newspaper").append("\n");
         sb.append(super.toString());
-        sb.append("index='").append(index).append(",\'}\n");
+        sb.append("index: ").append(index).append("\n");
         return sb.toString();
     }
 }

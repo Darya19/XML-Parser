@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<paper>
+    <newspaper title="Science development" type="newspaper">
+        <monthly>true</monthly>
+        <publication_date>12.3.1998</publication_date>
+        <characteristics>
+            <page_number>16</page_number>
+            <glossy>false</glossy>
+        </characteristics>
+        <index>ghy/64</index>
+    </newspaper>
+    <booklet title="Windows" type="booklet">
+        <monthly>false</monthly>
+        <publication_date>23.1.2019</publication_date>
+        <characteristics>
+            <page_number>2</page_number>
+            <glossy>true</glossy>
+        </characteristics>
+        <booklet_type>fold</booklet_type>
+    </booklet>

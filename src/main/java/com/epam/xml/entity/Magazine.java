@@ -34,9 +34,9 @@ public class Magazine extends Paper {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Magazine{");
+        final StringBuilder sb = new StringBuilder("Magazine").append("\n");
         sb.append(super.toString());
-        sb.append("index='").append(index).append(",\'}\n");
+        sb.append("index: ").append(index).append("\n");
         return sb.toString();
     }
 }
