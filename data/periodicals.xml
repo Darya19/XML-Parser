@@ -47,4 +47,67 @@
         </p:characteristics>
         <booklet_type>fold</booklet_type>
     </p:booklet>
+        <p:newspaper title="DailyNews" type="newspaper">
+        <monthly>true</monthly>
+        <publication_date>01.3.1994</publication_date>
+        <p:characteristics>
+            <page_number>21</page_number>
+            <glossy>false</glossy>
+        </p:characteristics>
+        <index>hdf/53</index>
+    </p:newspaper>
+    <p:newspaper title="Belarus today" type="newspaper">
+        <monthly>true</monthly>
+        <publication_date>29.8.2000</publication_date>
+        <p:characteristics>
+            <page_number>21</page_number>
+            <glossy>false</glossy>
+        </p:characteristics>
+        <index>bel/69</index>
+    </p:newspaper>
+    <p:magazine title="Cosmopolitan" type="magazine">
+        <monthly>true</monthly>
+        <publication_date>01.7.2005</publication_date>
+        <p:characteristics>
+            <page_number>57</page_number>
+            <glossy>true</glossy>
+        </p:characteristics>
+        <index>cos/89</index>
+    </p:magazine>
+    <p:booklet title="Java Course" type="booklet">
+        <monthly>false</monthly>
+        <publication_date>14.9.2020</publication_date>
+        <p:characteristics>
+            <page_number>2</page_number>
+            <glossy>true</glossy>
+        </p:characteristics>
+        <booklet_type>gluing</booklet_type>
+    </p:booklet>
+    <p:booklet title="Evroopt" type="booklet">
+        <monthly>false</monthly>
+        <publication_date>21.10.2019</publication_date>
+        <p:characteristics>
+            <page_number>6</page_number>
+            <glossy>true</glossy>
+        </p:characteristics>
+        <booklet_type>gluing</booklet_type>
+    </p:booklet>
+    <p:magazine title="ShowRoom" type="magazine">
+        <monthly>true</monthly>
+        <publication_date>19.1.2020</publication_date>
+        <p:characteristics>
+            <page_number>22</page_number>
+            <glossy>true</glossy>
+        </p:characteristics>
+        <index>sho/85</index>
+    </p:magazine>
+    <p:newspaper title="Kurjer" type="newspaper">
+        <monthly>true</monthly>
+        <publication_date>24.11.2001</publication_date>
+        <p:characteristics>
+            <page_number>18</page_number>
+            <glossy>false</glossy>
+        </p:characteristics>
+        <index>kur/36</index>
+    </p:newspaper>
 </paper>
